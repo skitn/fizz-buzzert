@@ -16,9 +16,7 @@ class FizzBuzzert
     {
         $this->fizz_buzz_list[] = [
             'no'  => $method_name,
-            'say' => $params[0] ?? ''
-        ];
-        return $this;
+            'say' => $params[0] ?? '' ]; return $this;
     }
 
     public function run()
@@ -28,17 +26,17 @@ class FizzBuzzert
             $expected_no++;
 
             if (self::PREFIX_NUMBER_METHOD . $expected_no !== $value['no']) {
-                throw new \Exception('invalid number');
+                throw new \BadMethodCallException('invalid call method.');
             }
 
             if ($expected_no % 3 === 0 && $expected_no % 5 === 0) {
                 if ($value['say'] !== self::TYPE_FIZZ_BUZZ) {
-                    throw new \Exception(sprintf('assert fizz buzz. num=%d', $expected_no));
+                    throw new \UnexpectedValueException(sprintf('fizz-buzz, unexpected num=%d', $expected_no));
                 }
             } elseif ($expected_no % 3 === 0 && $value['say'] !== self::TYPE_FIZZ) {
-                throw new \Exception(sprintf('assert fizz. num=%d', $expected_no));
+                throw new \UnexpectedValueException(sprintf('fizz, unexpected num=%d', $expected_no));
             } elseif ($expected_no % 5 === 0 && $value['say'] !== self::TYPE_BUZZ) {
-                throw new \Exception(sprintf('assert buzz. num=%d', $expected_no));
+                throw new \UnexpectedValueException(sprintf('buzz, unexpected num=%d', $expected_no));
             }
         }
     }
