@@ -4,11 +4,11 @@ namespace Skitn\FizzBuzzert;
 
 class FizzBuzzert
 {
-    const PREFIX_NUMBER_METHOD = 'no';
-
     const TYPE_FIZZ = 1;
     const TYPE_BUZZ = 2;
     const TYPE_FIZZ_BUZZ = 3;
+
+    private const PREFIX_NUMBER_METHOD = 'no';
 
     private $fizz_buzz_list = [];
 
@@ -16,7 +16,9 @@ class FizzBuzzert
     {
         $this->fizz_buzz_list[] = [
             'no'  => $method_name,
-            'say' => $params[0] ?? '' ]; return $this;
+            'say' => $params[0] ?? ''
+        ];
+        return $this;
     }
 
     public function run()
