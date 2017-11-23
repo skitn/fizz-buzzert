@@ -10,12 +10,12 @@ class FizzBuzzert
 
     private const PREFIX_NUMBER_METHOD = 'no';
 
-    private $fizz_buzz_list = [];
+    private $fizzBuzzList = [];
 
-    public function __call(string $method_name, array $params)
+    public function __call(string $methodName, array $params)
     {
-        $this->fizz_buzz_list[] = [
-            'no'  => $method_name,
+        $this->fizzBuzzList[] = [
+            'no'  => $methodName,
             'say' => $params[0] ?? ''
         ];
         return $this;
@@ -23,22 +23,22 @@ class FizzBuzzert
 
     public function run()
     {
-        $expected_no = 0;
-        foreach ($this->fizz_buzz_list as $value) {
-            $expected_no++;
+        $expectedNumber = 0;
+        foreach ($this->fizzBuzzList as $value) {
+            $expectedNumber++;
 
-            if (self::PREFIX_NUMBER_METHOD . $expected_no !== $value['no']) {
+            if (self::PREFIX_NUMBER_METHOD . $expectedNumber !== $value['no']) {
                 throw new \BadMethodCallException('invalid call method.');
             }
 
-            if ($expected_no % 3 === 0 && $expected_no % 5 === 0) {
+            if ($expectedNumber % 3 === 0 && $expectedNumber % 5 === 0) {
                 if ($value['say'] !== self::TYPE_FIZZ_BUZZ) {
-                    throw new \UnexpectedValueException(sprintf('fizz-buzz, unexpected num=%d', $expected_no));
+                    throw new \UnexpectedValueException(sprintf('fizz-buzz, unexpected num=%d', $expectedNumber));
                 }
-            } elseif ($expected_no % 3 === 0 && $value['say'] !== self::TYPE_FIZZ) {
-                throw new \UnexpectedValueException(sprintf('fizz, unexpected num=%d', $expected_no));
-            } elseif ($expected_no % 5 === 0 && $value['say'] !== self::TYPE_BUZZ) {
-                throw new \UnexpectedValueException(sprintf('buzz, unexpected num=%d', $expected_no));
+            } elseif ($expectedNumber % 3 === 0 && $value['say'] !== self::TYPE_FIZZ) {
+                throw new \UnexpectedValueException(sprintf('fizz, unexpected num=%d', $expectedNumber));
+            } elseif ($expectedNumber % 5 === 0 && $value['say'] !== self::TYPE_BUZZ) {
+                throw new \UnexpectedValueException(sprintf('buzz, unexpected num=%d', $expectedNumber));
             }
         }
     }
